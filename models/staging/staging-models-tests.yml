@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "{{ doc('customers') }}"
+    columns:
+      - name: customerid
+        description: "{{ doc('customerid') }}"
+        tests:
+          - unique
+          - not_null
+          - is_even
+
+  - name: stg_orders
+    description: "this table captures transactions of all the orders from source systems"
+    config:
+      schema: "{{env_var('dbt_stageschema','staging')}}"
+    columns:
+      - name: orderid
+        description: "this id identifies every order uniquely along with lineno"
+        tests:
+          - unique
+          - not_null
+          - is_even
+
+  - name: stg_shipments
+    description: "shipments data is stored in this table"
+    columns:
+      - name: status
+        description: "shipment status changed by employee will be captured in this column"
+        tests:
+          - accepted_values:
+              values: ['replaced', 'shipped', 'ordered']
+      - name: customerid
+        description: "customerid is the foreign key from customers table to identify each customer for shipment"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customerid
