@@ -51,4 +51,4 @@ models:
 
   dq_tools:
     # +database: DQ
-    +schema: AUDITING
+    +schema: "{{env_var('dbt_auditschema','auditing')}}"
