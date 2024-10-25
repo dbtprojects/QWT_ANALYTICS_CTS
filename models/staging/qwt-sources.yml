@@ -1,7 +1,7 @@
 version: 2
 sources:
   - name: qwt_src
-    database: "{{env_var('dbt_sourcedb','qwt_analytics')}}"
+    database: "{{env_var('DBT_SOURCEDB','QWT_ANALYTICS')}}"
     schema: raw
     tables:
       - name: customers

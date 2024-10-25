@@ -3,12 +3,12 @@ version: 2
 seeds:
   - name: divisions
     config:
-      schema: "{{env_var('dbt_seedschema','lookup')}}"
+      schema: "{{env_var('DBT_SEEDSCHEMA','LOOKUP')}}"
 
   - name: categories
     config:
-      schema: "{{env_var('dbt_seedschema','lookup')}}"
+      schema: "{{env_var('DBT_SEEDSCHEMA','LOOKUP')}}"
 
   - name: shippers
     config:
-      schema: "{{env_var('dbt_seedshema','lookup')}}"
+      schema: "{{env_var('DBT_SEEDSCHEMA','LOOKUP')}}"
