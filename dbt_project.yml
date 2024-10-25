@@ -2,7 +2,7 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'my_new_project'
+name: 'QWT_ANALYTICS_CTS'
 version: '1.0.0'
 config-version: 2
 
@@ -35,8 +35,20 @@ clean-targets:         # directories to be removed by `dbt clean`
 # continue to be built as views. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 
+vars:
+  v_city: 'London'
+  dbt_dq_tool_schema: "{{env_var('dbt_auditschema','auditing')}}"
+
+on-run-end:
+  - '{{ dq_tools.store_test_results(results) }}'
+
 models:
-  my_new_project:
-    # Applies to all files under models/example/
-    example:
-      +materialized: table
+
+  +pre-hook: 
+  - "insert into auditing.models_audit(model_name, start_time, end_time, duration) values ('{{this}}', current_timestamp, null, null );"
+  +post-hook:
+    - "update auditing.models_audit set end_time = current_timestamp, duration = datediff('second', start_time, current_timestamp) where end_time is null "
+
+  dq_tools:
+    # +database: DQ
+    +schema: AUDITING

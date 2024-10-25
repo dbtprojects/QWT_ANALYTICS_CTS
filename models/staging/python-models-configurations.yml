@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: stg_products
+    config:
+      schema: "{{env_var('dbt_stageschema','staging')}}"
+  
