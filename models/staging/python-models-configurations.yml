@@ -5,7 +5,5 @@ models:
     config:
       schema: "{{env_var('DBT_STAGESCHEMA','STAGING')}}"
 
-  - name: stg_orders
-    config:
-      schema: "{{env_var('DBT_STAGESCHEMA','STAGING')}}"
+
   

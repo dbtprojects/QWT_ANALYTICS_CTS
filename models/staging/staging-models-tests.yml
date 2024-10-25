@@ -14,7 +14,7 @@ models:
   - name: stg_orders
     description: "this table captures transactions of all the orders from source systems"
     config:
-      schema: "{{env_var('dbt_stageschema','staging')}}"
+      schema: "{{env_var('DBT_STAGESCHEMA','STAGING')}}"
     columns:
       - name: orderid
         description: "this id identifies every order uniquely along with lineno"
