@@ -45,9 +45,9 @@ on-run-end:
 models:
 
   +pre-hook: 
-  - "insert into auditing.models_audit(model_name, start_time, end_time, duration) values ('{{this}}', current_timestamp, null, null );"
+  - "insert into {{env_var('dbt_auditschema','auditing')}}.models_audit(model_name, start_time, end_time, duration) values ('{{this}}', current_timestamp, null, null );"
   +post-hook:
-    - "update auditing.models_audit set end_time = current_timestamp, duration = datediff('second', start_time, current_timestamp) where end_time is null "
+    - "update {{env_var('dbt_auditschema','auditing')}}.models_audit set end_time = current_timestamp, duration = datediff('second', start_time, current_timestamp) where end_time is null "
 
   dq_tools:
     # +database: DQ
