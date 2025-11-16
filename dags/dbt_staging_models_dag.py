@@ -57,11 +57,10 @@ def dbt_staging_models_dag():
         profile_name="default",
         target_name="dev",
         profile_mapping=SnowflakeUserPasswordProfileMapping(
-            conn_id="snowflake_default",
+            conn_id="snowflake123",
             profile_args={
                 "database": "QWT_DEV",
                 "schema": "STAGING_DEV",
-
             },
         ),
     )
@@ -85,9 +84,8 @@ def dbt_staging_models_dag():
         operator_args={
             "install_deps": True,  # Install dbt packages before running
         },
-        select=["+tag:staging"],  # Select only staging models
-        # Alternatively, use path-based selection:
-        # select=["path:models/staging"],
+        # Select only staging models using path-based selection
+        select=["path:models/staging"],
     )
 
     staging_models
