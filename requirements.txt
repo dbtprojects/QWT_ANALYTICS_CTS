@@ -1,8 +1,9 @@
-# Airflow Cosmos - dbt integration for Airflow
-astronomer-cosmos>=1.3.0
+# Astronomer Cosmos - run dbt in Airflow
+astronomer-cosmos[dbt-all]>=1.3.0
 
-# dbt adapter for Snowflake
+# dbt adapter for your data warehouse (add the specific one you're using)
+# Uncomment the one you need:
 dbt-snowflake>=1.5.0
-
-# Apache Airflow Snowflake provider
-apache-airflow-providers-snowflake>=5.0.0
+# dbt-bigquery>=1.5.0
+# dbt-redshift>=1.5.0
+# dbt-postgres>=1.5.0

@@ -1,3 +1,0 @@
-# System-level packages required for the project
-# Add any OS-level dependencies here (one per line)
-# Example: git, build-essential, etc.
