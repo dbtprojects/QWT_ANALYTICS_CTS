@@ -1,0 +1,8 @@
+# Airflow Cosmos - dbt integration for Airflow
+astronomer-cosmos>=1.3.0
+
+# dbt adapter for Snowflake
+dbt-snowflake>=1.5.0
+
+# Apache Airflow Snowflake provider
+apache-airflow-providers-snowflake>=5.0.0
